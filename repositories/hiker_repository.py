@@ -32,13 +32,11 @@ def update(hiker):
     sql = "UPDATE hikers SET (first_name, last_name) = (%s, %s) WHERE id = %s"
     values = [hiker.first_name, hiker.last_name, hiker.id]
     run_sql(sql, values)
-    # return redirect("/hikers")
 
 def delete(id):
     sql = "DELETE FROM hikers WHERE id = %s"
     values = [id]
     run_sql(sql, values)
-    # return redirect("/hikers")
 
 def delete_all():
     sql = "DELETE FROM hikers"

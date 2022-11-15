@@ -30,22 +30,23 @@ def select_all():
 #     results = run_sql(sql, values)
 #     if results:
 #         result = results[0]
-#         munro = Munro(result["name"], result["region"], result["altitude"], result["date"], result["id"])
+#         munro = Munro(result["name"], result["region"], result["altitude"], result["id"])
 #     return munro
 
+
+def update(munro):
+    sql = "UPDATE munros SET (name, region, altitude) = (%s, %s, %s) WHERE id = %s"
+    values = [munro.name, munro.region, munro.altitude, munro.id]
+    run_sql(sql, values)
 
 def delete_all():
     sql = "DELETE FROM munros"
     run_sql(sql)
 
 
-# def delete(id):
-#     sql = "DELETE FROM munros WHERE id = %s"
-#     values = [id]
-#     run_sql(sql, values)
+def delete(id):
+    sql = "DELETE FROM munros WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
 
 
-# def update(munro):
-#     sql = "UPDATE munros SET name = %s WHERE id = %s"
-#     values = [munro.name, munro.id]
-#     run_sql(sql, values)
