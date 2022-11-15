@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Munros</h2>
+
+{% for munro in munros %}
+
+<section>
+    <p><b>{{ munro.name }}</b>
+        Region: {{ munro.region.name }}
+        Altitude: {{ munro.altitude }}
+    </p>
+</section>
+{% endfor %}
+
+{% endblock %}

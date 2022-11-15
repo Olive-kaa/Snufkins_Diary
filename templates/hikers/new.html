@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Add a New Hiker</h2>
+
+<form action="/hikers" method="POST">
+    <div>
+        <label for="first_name">First name:</label>
+        <input type="text" id="name" name="first_name">
+        <label for="last_name">Last name:</label>
+        <input type="text" id="name" name="last_name">
+        <input type="submit">
+    </div>
+</form>
+
+{% endblock %}

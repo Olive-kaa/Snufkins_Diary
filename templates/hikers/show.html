@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ hiker.first_name }} {{ hiker.last_name }}</h2>
+
+{% for hiker in hikers %}
+
+<section>
+    <p><b>{{ bagged_munro.name }}</b>
+        Region: {{ bagged_munro.region.name }}
+        Altitude: {{ bagged_munro.altitude }}
+    </p>
+</section>
+{% endfor %}
+
+{% endblock %}
