@@ -13,9 +13,10 @@ def select(id):
     region = None
     sql = "SELECT * FROM regions WHERE id = %s"
     values = [id]
-    result = run_sql(sql, values)[0]
+    results = run_sql(sql, values)
 
-    if result is not None:
+    if results:
+        result = results[0]
         region = Region(result["name"], result["id"])
     return region
 

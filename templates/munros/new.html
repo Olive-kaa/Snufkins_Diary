@@ -5,12 +5,20 @@
 
 <form action="/munros" method="POST">
     <div>
-        <label for="name">Munro:</label>
+        <label for="munro">Munro:</label>
         <input type="text" id="name" name="name">
-        <label for="name">Region:</label>
-        <input type="text" id="name" name="region">
-        <label for="name">Altitude:</label>
-        <input type="text" id="name" name="altitude">
+
+        <label for="region">Region:</label>
+        <select name="region_id" id="region">
+            {% for region in regions %}
+            <option value="{{ region.id }}">
+                {{ region.name }}
+            </option>
+            {% endfor %}
+        </select> 
+
+        <label for="altitude">Altitude:</label>
+        <input type="number" id="altitude" name="altitude">
         <input type="submit">
     </div>
 </form>

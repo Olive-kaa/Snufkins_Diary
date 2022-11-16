@@ -2,15 +2,19 @@
 {% block content %}
 
 <h2>{{ hiker.first_name }} {{ hiker.last_name }}</h2>
+<h5><a href="/hikers/{{ hiker.id }}/edit">Edit hiker's name</a></h5>
 
-{% for hiker in hikers %}
-
+{% for climb in climbs %}
 <section>
-    <p><b>{{ bagged_munro.name }}</b>
-        Region: {{ bagged_munro.region.name }}
-        Altitude: {{ bagged_munro.altitude }}
-    </p>
+    <div>
+        <b>{{ names[0] }}</b>
+        {{  }} - 
+        bagged on: {{ climb[1]}}
+    </div>
 </section>
 {% endfor %}
 
+
+
+ 
 {% endblock %}

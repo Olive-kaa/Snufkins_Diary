@@ -4,13 +4,18 @@
 <h2>Munros</h2>
 
 {% for munro in munros %}
+    <section>
+        <p><a href="munros/{{ munro.id }}"><b>{{ munro.name }}</b></a>,
+            Region: {{ munro.region.name }},
+            Altitude: {{ munro.altitude }}
+        </p>
+        <form action="/munros/{{ munro.id }}/delete" method="POST">
+            <input type="submit" value="Delete">
+        </form> 
 
-<section>
-    <p><b>{{ munro.name }}</b>
-        Region: {{ munro.region.name }}
-        Altitude: {{ munro.altitude }}
-    </p>
-</section>
+    </section>
 {% endfor %}
+
+<h3><a href="/munros/new" target="_blank">Add a new Munro</a></h3>
 
 {% endblock %}

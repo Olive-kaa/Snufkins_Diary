@@ -16,40 +16,44 @@ def munros():
 # NEW
 @munros_blueprint.route("/munros/new")
 def new_munro():
-    return render_template("munros/new.html")
+    regions = region_repository.select_all()
+    return render_template("munros/new.html", regions=regions)
 
 
 # CREATE
 @munros_blueprint.route("/munros", methods=["POST"])
 def create_munro():
-    name = request.form["name"]
-    region = request.form["region"]
-    # pdb.set_trace()
-    altitude = request.form["altitude"]
-    new_munro = Munro(name, region, altitude)
+    input_name = request.form["name"]
+    region_id = request.form["region_id"]
+    selected_region = region_repository.select(region_id)
+    input_altitude = request.form["altitude"]
+    new_munro = Munro(input_name, selected_region, input_altitude)
     munro_repository.save(new_munro)
     return redirect("/munros")
 
 
-# # EDIT
-# @munros_blueprint.route("/munros/<id>/edit")
-# def edit_munro(id):
-#     munro = munro_repository.select(id)
-#     return render_template('munros/edit.html', munro=munro)
+# EDIT
+@munros_blueprint.route("/munros/<id>/edit")
+def edit_munro(id):
+    munro = munro_repository.select(id)
+    # regions = region_repository.select_all()
+    return render_template('munros/edit.html', munro=munro)
 
 
-# # UPDATE
-# @munros_blueprint.route("/munros/<id>", methods=["POST"])
-# def update_munro(id):
-#     first_name = request.form["first_name"]
-#     last_name = request.form["last_name"]
-#     munro = Munro(first_name, last_name, id)
-#     munro_repository.update(munro)
-#     return redirect('/munros')
+# UPDATE
+@munros_blueprint.route("/munros/<id>", methods=["POST"])
+def update_munro(id):
+    munro_name = request.form["name"]
+    region_id = request.form["region_id"]
+    selected_region = region_repository.select(region_id)
+    altitude = request.form["altitude"]
+    munro = Munro(name, region, altitude, id)
+    munro_repository.update(munro)
+    return redirect('/munros')
 
 
-# # DELETE
-# @munros_blueprint.route("/munros/<id>/delete", methods=["POST"])
-# def delete_munro(id):
-#     munro_repository.delete(id)
-#     return redirect('/munros')
+# DELETE
+@munros_blueprint.route("/munros/<id>/delete", methods=["POST"])
+def delete_munro(id):
+    munro_repository.delete(id)
+    return redirect('/munros')

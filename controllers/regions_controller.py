@@ -10,3 +10,17 @@ regions_blueprint = Blueprint("regions", __name__)
 def regions():
     regions = region_repository.select_all()
     return render_template("regions/index.html", regions=regions)
+
+# NEW
+@regions_blueprint.route("/regions/new")
+def new_region():
+    return render_template("regions/new.html")
+
+
+# CREATE
+@regions_blueprint.route("/regions", methods=["POST"])
+def create_region():
+    input_name = request.form["name"]
+    new_region = Region(input_name)
+    region_repository.save(new_region)
+    return redirect("/regions")

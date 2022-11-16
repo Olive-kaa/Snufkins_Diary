@@ -41,3 +41,14 @@ def delete(id):
 def delete_all():
     sql = "DELETE FROM hikers"
     run_sql(sql)
+
+def bagged_munros(hiker_id):
+    climbs = []
+    sql = "SELECT munro_id, date_bagged FROM bagged_munros WHERE hiker_id = %s  GROUP BY hiker_id, munro_id, date_bagged"
+    values = [hiker_id]
+    results = run_sql(sql, values)
+    # pdb.set_trace()
+    for result in results:
+        climb = [result["munro_id"], result["date_bagged"]] 
+        climbs.append(climb)
+    return climbs
