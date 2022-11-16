@@ -5,14 +5,14 @@
 
 {% for hiker in hikers %}
 <section>
-    <a href="/hikers/{{ hiker.id }}" target=”_blank”>{{ hiker.first_name }} {{ hiker.last_name }}</a>
+    <h3><a href="/hikers/{{ hiker.id }}" target=”_blank”>{{ hiker.first_name }} {{ hiker.last_name }}</a></h3>
     <form action="/hikers/{{ hiker.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form> 
 </section>
 {% endfor %}
 
-<h3><a href="/hikers/new" target="_blank">Add a new Hiker</a></h3>
+<h4><a href="/hikers/new" target="_blank">Add a new Hiker</a></h4>
 
 
 {% endblock %}
