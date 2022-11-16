@@ -24,9 +24,9 @@ def hiker(id):
     munros = munro_repository.select_all()
     regions = region_repository.select_all()
     climbs = hiker_repository.bagged_munros(id)
-    climb1 = climbs[0]
+    
 
-    return render_template("hikers/show.html", hiker=single_hiker, climbs=climbs, munros=munros)
+    return render_template("hikers/show.html", hiker=single_hiker, climbs=climbs, regions=regions, munros=munros)
 
 
 # NEW
@@ -60,6 +60,8 @@ def update_hiker(id):
     hiker = Hiker(first_name, last_name, id)
     hiker_repository.update(hiker)
     return redirect('/hikers')
+
+
 
 
 # DELETE

@@ -64,6 +64,5 @@ bagged_munro_repository.save(bagged_munro_2)
 bagged_munro_3 = Bagged_munro(hiker_3, munro_4, '2021-08-09')
 bagged_munro_repository.save(bagged_munro_3)
 
-print(hiker_repository.bagged_munros(67))
 
 pdb.set_trace()

@@ -7,14 +7,37 @@
 {% for climb in climbs %}
 <section>
     <div>
-        <p>{{climb.munro.name}},
-        {{climb.munro.region.name}},
-        {{climb.munro.altitude}},
-        {{climb.date_bagged}}</p>
-            
+        <p><b>{{climb.munro.name}}</b>,
+        {{climb.munro.region.name}}, 
+         Altitude: {{climb.munro.altitude}},
+         Bagged on: {{climb.date_bagged}}</p>
     </div>
 </section>
 {% endfor %}
+<h3>Add a Munro to your list</h3>
+
+<form action="/bagged_munros" method="POST">
+    <div>
+        <label for="hiker_id">Hiker:</label>
+        <select name="hiker_id" id="hiker_id">
+            <option value="{{ hiker.id }}"> {{hiker.first_name}}</option>
+        </select>
+        <label for="munro_id">Munro:</label>
+        <select name="munro_id" id="munro_id">
+            {% for munro in munros %}
+            <option value="{{ munro.id }}">
+                {{ munro.name }}
+            </option>
+            {% endfor %}
+        </select> 
+
+
+        <label for="date_bagged">Date bagged:</label>
+        <input type="date" id="date_bagged" name="date_bagged">
+        <input type="submit">
+    </div>
+</form>
+
 
 
 
