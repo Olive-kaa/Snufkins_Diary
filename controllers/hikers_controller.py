@@ -2,9 +2,11 @@ from flask import Blueprint, Flask, redirect, render_template, request
 import pdb
 from models.hiker import Hiker
 from models.munro import Munro
+from models.region import Region
 from models.bagged_munro import Bagged_munro
 import repositories.hiker_repository as hiker_repository
 import repositories.munro_repository as munro_repository
+import repositories.region_repository as region_repository
 import repositories.bagged_munro_repository as bagged_munro_repository
 
 hikers_blueprint = Blueprint("hikers", __name__)
@@ -20,13 +22,11 @@ def hikers():
 def hiker(id):
     single_hiker = hiker_repository.select(id)
     munros = munro_repository.select_all()
-    bagged_munros_by_hiker = bagged_munro_repository.select_all()
+    regions = region_repository.select_all()
     climbs = hiker_repository.bagged_munros(id)
-    names =[]
-    for climb in climbs:
-        munro = munro_repository.select(climb[0])
-        names.append(munro.name)
-    return render_template("hikers/show.html", hiker=single_hiker, bagged_munros_by_hiker=bagged_munros_by_hiker,climbs=climbs, munros=munros, names=names)
+    climb1 = climbs[0]
+
+    return render_template("hikers/show.html", hiker=single_hiker, climbs=climbs, munros=munros)
 
 
 # NEW

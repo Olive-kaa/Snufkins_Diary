@@ -1,5 +1,7 @@
 from db.run_sql import run_sql
 from models.hiker import Hiker
+from models.bagged_munro import Bagged_munro
+import repositories.munro_repository as munro_repository
 import pdb
 
 def save(hiker):
@@ -44,11 +46,15 @@ def delete_all():
 
 def bagged_munros(hiker_id):
     climbs = []
-    sql = "SELECT munro_id, date_bagged FROM bagged_munros WHERE hiker_id = %s  GROUP BY hiker_id, munro_id, date_bagged"
+    sql = """SELECT munro_id, date_bagged FROM bagged_munros 
+    WHERE hiker_id = %s  GROUP BY hiker_id, munro_id, date_bagged"""
     values = [hiker_id]
     results = run_sql(sql, values)
-    # pdb.set_trace()
+    hiker = select(hiker_id)
     for result in results:
-        climb = [result["munro_id"], result["date_bagged"]] 
-        climbs.append(climb)
+        munro = munro_repository.select(result["munro_id"])
+        date_bagged = result["date_bagged"]
+        current_climb = Bagged_munro(hiker, munro, date_bagged)
+        climbs.append(current_climb)
+        # Rebuilding our bagged munro class from different sections of the database using the ids of the bagged hikes table
     return climbs

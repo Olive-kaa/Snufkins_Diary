@@ -7,9 +7,11 @@
 {% for climb in climbs %}
 <section>
     <div>
-        <b>{{ names[0] }}</b>
-        {{  }} - 
-        bagged on: {{ climb[1]}}
+        <p>{{climb.munro.name}},
+        {{climb.munro.region.name}},
+        {{climb.munro.altitude}},
+        {{climb.date_bagged}}</p>
+            
     </div>
 </section>
 {% endfor %}
