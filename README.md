@@ -1,5 +1,5 @@
 Snufkin's Diary is a Munro bagging app.
-A web app built using Python, Flask, Postgres, HTML and CSS.
+A web app built using Python, Flask, PostgreSQL, HTML and CSS.
 
 MVP:
 Display a list of hikers with the option to create new ones and delete a hiker
